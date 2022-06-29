@@ -25,7 +25,7 @@ Database Teste do Dantas.
         
         SELECT his_texto FROM historicos
         SELECT bairro FROM clientedto
-        
+
 
 Exercício First Name, Last Name.
 
@@ -42,3 +42,16 @@ Ex:
         SELECT DISTINCT coluna1,coluna2...
         FROM tabela
 
+Exemplos/Treino
+Database Teste do Dantas.
+
+        ELECT DISTINCT ent_nome
+        FROM entidades
+
+Exercício Sobrenomes únicos na tabela.
+
+        Database passada pelo curso. Na teste o nome completo é dado
+        em um único campo.
+
+        SELECT DISTINCT lastName
+        FROM person.Person
