@@ -355,5 +355,45 @@ NOT BETWEEN inverte a logica da função, fazendo a mesma retornar tudo fora da 
 
         retorna tudo oque está fora de 5k e 10k
 
+IN verifica se determinado valor/e ou valores correspondem a outros valores passados na lista.
+
+Ideia: busca no banco de dados e retorna qualquer valor que bater com os parâmeros de pesquisa passados.
+Ex:
+
+        valor IN (valor1, valor2...)
+
+        Outro exemplo:
+        valor IN (SELECT valor FROM nomeDaTabela)
+
+        Um SELECT dentro de um IN recebe o nome de subSelect ou subQuery, fazendo o mesmo comparar os valores passados apenas com o retorno do SELECT.
+
+### Exemplos/Treino
+
+> Database Teste do Dantas.
+
+        SELECT sgp_cod, pro_descricao
+        FROM  produtos
+        WHERE  sgp_cod IN (603,602,604)
+        ORDER BY sgp_cod ASC
+
+        IMPORTANTE: A verificação da mesma condição acima pode ser feita usando operadores como 'OR', porem a velocidade de execução usando o 'IN' é maior, além de a quantidade de linhas de comando usadas serem menor.
+
+        Comparativo:
+
+        SELECT sgp_cod, pro_descricao
+        FROM  produtos
+        WHERE  sgp_cod IN (603,602,604)
+        ORDER BY sgp_cod ASC
+
+        4 linhas.
+
+        SELECT sgp_cod, pro_descricao
+        FROM  produtos
+        WHERE  sgp_cod = 603 OR
+        sgp_cod = 602 OR
+        sgp_cod = 604
+        ORDER BY sgp_cod ASC
+
+        6 linhas.
 
 
