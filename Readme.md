@@ -211,8 +211,42 @@ Ex:
 
 É um comando bem sugestivo, pelo mesmo motivo não irão haver muitos exemplos do mesmo.
 
+ORDER BY ordena o retorno do banco de dados a partir de algum 'parâmetro' como data, ordem crescente(asc) ou decrescente(desc)...
+
+Ideia: Ordenar o retorno da consulta com base em algum parâmetro
+Ex:
+
+        SELECT coluna1,coluna2...
+        FROM tabela
+        ORDER BY nomeDaColuna parâmetro
+
 Exemplos/Treino
 Database Teste do Dantas.
+
+        SELECT *
+        FROM entidades
+        ORDER BY ent_nome, ent_bairro ASC
+        OFFSET 0 ROWS 
+        FETCH NEXT 100 ROWS ONLY 
+
+        Teste 2
+
+        SELECT pro_descricao, pro_precO
+        FROM produtos
+        ORDER BY pro_preco DESC
+        OFFSET 0 ROWS 
+        FETCH NEXT 10 ROWS ONLY
+
+
+
+Exercício obter os 10 produtos mais caros cadastrados no sistema.
+
+        Database passada pelo curso. Logo, nomes de colunas e tabelas diferentes.
+
+        SELECT TOP 10 productID
+        FROM Production.Product
+        ORDER BY listprice DESC
+        
 
 
 
