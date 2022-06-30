@@ -110,9 +110,40 @@ Database Teste do Dantas.
 
         Realizado um filtro na tabela de cliente, retornando apenas o nome dos que moram em 'barreiras', na 'avenida acm' dentro do bairro 'centro'.
 
-Exercício, coletar os produtos com peso dentre 500kg e 700kg
+Exercício, coletar os produtos com peso dentre 500kg e 700kg.
 Exercício 2, retornar os empregados casados e assalariado.
+Exercício 3, retornar o email de um usuário para que seja enviada uma cobrança.
 
         Database passada pelo curso. Logo, nomes de colunas e tabelas diferentes.
+        Exercício 1, peso '>500 e <700':
+
+        SELECT Name
+        FROM Production.Product
+        WHERE Weight > 500
+        AND Weight < 700
+
+        Exercício 2, relação de empregados casados e assalariados.
+
+        SELECT *
+        FROM HumanResources.Employee
+        WHERE MaritalStatus = 'm'
+        AND SalariedFlag = 1
+
+        Exercício 3, achar uma pessoa 'X' e retornar seu email de contato.
+
+        SELECT *
+        FROM Person.Person
+        WHERE FirstName = 'peter'
+        AND LastName = 'krebs'
+
+        SELECT *
+        FROM Person.EmailAddress
+        WHERE BusinessEntityID = 26
+
+
+        Primeiro foi retornado as informações da pessoa, tais como seu ID
+        e após isso foi usado o mesmo para encontrar seu email.
+        
+
 
         
