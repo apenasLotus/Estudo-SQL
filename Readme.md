@@ -396,4 +396,21 @@ Ex:
 
         6 linhas.
 
+LIKE retorna todas as linhas que batem a expressão passada, seja ela uma string completa, ou meso uma condição.
+
+Ideia: retornar todas as linhas da coluna que batem com a/as condições passadas.
+Ex:
+
+        Condições:
+
+        OPERADORES      FUNÇÃO
+        Tô%             RETORNA OS VALORES QUE COMEÇAM COM 'Tô'
+        %Com            RETORNA OS VALORES QUE TERMINAM COM 'Com'
+        %FOMEE%         ... COM 'FOMEE' EM QUAISQUER POSIÇÃO
+        _BORA%          ... COM 'BORA' EM 2º POSIÇÃO
+        COMER_%         ... COM 'COMER' E TENHAM AO MENOS +1 CARÁCTER
+        PHP__%          ... COM 'PHP' E TENHAM AO MENOS +2 CARÁCTER
+        PRF%V           ... COMEÇAM COM 'PFV' E TERMINAM COM 'V'
+
+                Pfv, leia os exemplos usados... 
 
