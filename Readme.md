@@ -324,3 +324,36 @@ Exercício obter os 10 produtos mais caros cadastrados no sistema.
         FROM Production.Product
         ORDER BY listprice DESC
 ```
+
+BETWEEN retorna os dados entre dois valores/expressões dentre um valor mínimo e um valor máximo.
+
+Ideia: É usado para retornar a intercessão entre dois pontos.
+Ex:
+
+        SELECT *
+        FROM tabela
+        WHERE coluna
+        BETWEEN valorMínimo AND valorMáximo
+
+NOT BETWEEN inverte a logica da função, fazendo a mesma retornar tudo fora da intercessão dentre os pontos passados.
+
+### Exemplos/Treino
+
+> Database Teste do Dantas.
+
+        SELECT DISTINCT pro_preco
+        FROM produtos
+        WHERE pro_preco BETWEEN 5000 AND 10000
+        ORDER BY pro_preco ASC
+
+        retorna a intercessão dentre os valore de 5k e 10k
+
+        SELECT DISTINCT pro_preco
+        FROM produtos
+        WHERE pro_preco NOT BETWEEN 5000 AND 10000
+        ORDER BY pro_preco ASC
+
+        retorna tudo oque está fora de 5k e 10k
+
+
+
