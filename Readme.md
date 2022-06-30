@@ -144,6 +144,52 @@ Exercício 3, retornar o email de um usuário para que seja enviada uma cobranç
         Primeiro foi retornado as informações da pessoa, tais como seu ID
         e após isso foi usado o mesmo para encontrar seu email.
         
+COUNT retorna o numero de linhas que bate com a condição que foi definida.
+
+Ideia: Fazer a contagem de algo, como uma tabela por exemplo.
+Ex:
+
+        SELECT COUNT(*,coluna1,coluna2...)
+        FROM tabela
+
+É possível usar o mesmo com outros comandos, DISTINCT por exemplo. Retornando apenas os dados não repetidos do da tabela.
+
+Exemplos/Treino
+Database Teste do Dantas.
+
+        SELECT count(*) 
+        FROM compras
+
+        SELECT count(*)
+        FROM marcas
+
+        SELECT count(*)
+        FROM produtos
+
+Exercício 1, retornar quantos produtos tem cadastrados na tabela de produtos.
+Exercício 2, retornar quantos tamanhos de produtos tem cadastrados na tabela de produtos.
+
+        Database passada pelo curso. Logo, nomes de colunas e tabelas diferentes.
+
+        Exercício 1, quantidade de produtos.
+
+        SELECT count(*)
+        FROM Production.Product
+        
+        resposta = 504
+
+        Exercício 2, tamanho dos produtos.
+
+        SELECT count(size)
+        FROM Production.Product
+
+        resposta = 211
+      
+
+
+
+
+
 
 
         
