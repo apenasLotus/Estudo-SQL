@@ -184,7 +184,35 @@ Exercício 2, retornar quantos tamanhos de produtos tem cadastrados na tabela de
         FROM Production.Product
 
         resposta = 211
-      
+
+TOP(FIRST no firebird) vai filtrar a quantidade de dados retornados de um SELECT
+
+Ideia: Limitar os resultados exibidos em 'X' linhas
+Ex:
+
+        SELECT first 100*
+        FROM tabela
+
+        Por organização apenas.
+
+        SELECT *
+        FROM  tabela
+
+        FETCH FIRST 100
+        ROWS ONLY
+
+        Ainda mais completo...
+
+        SELECT *
+        FROM tabela 
+        ORDER BY ...
+        OFFSET (primeiroNumero) ROWS 
+        FETCH NEXT (ultimoNumero) ROWS ONLY
+
+É um comando bem sugestivo, pelo mesmo motivo não irão haver muitos exemplos do mesmo.
+
+Exemplos/Treino
+Database Teste do Dantas.
 
 
 
