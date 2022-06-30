@@ -401,6 +401,10 @@ LIKE retorna todas as linhas que batem a expressão passada, seja ela uma string
 Ideia: retornar todas as linhas da coluna que batem com a/as condições passadas.
 Ex:
 
+        SELECT *
+        FROM tabela
+        WHERE coluna LIKE 'condição'
+
         Condições:
 
         OPERADORES      FUNÇÃO
@@ -412,5 +416,40 @@ Ex:
         PHP__%          ... COM 'PHP' E TENHAM AO MENOS +2 CARÁCTER
         PRF%V           ... COMEÇAM COM 'PFV' E TERMINAM COM 'V'
 
-                Pfv, leia os exemplos usados... 
+                Pfv, leia os exemplos usados...
 
+### Exemplos/Treino
+
+> Database Teste do Dantas.
+
+        SELECT ent_nome 
+        FROM  entidades
+        WHERE ent_nome LIKE 'GAB%'
+        ORDER BY ent_nome ASC
+
+        SELECT DISTINCT pro_preco,pro_descricao 
+        FROM produtos
+        WHERE pro_descricao  LIKE 'N%' AND pro_preco BETWEEN 1500 AND 5000
+        ORDER BY pro_descricao ASC
+
+        A partir de agora os comandos vão estar de pouco em pouco em linhas únicas.
+
+Exercício, retornar a quantidade de produtos que custam mais de 1,5k no sistema.
+
+        SELECT COUNT(pro_preco) FROM produtos WHERE pro_preco > 1500
+
+Exercício, retornar quantas pessoas começam com a letra 'J' na tabela.
+
+        SELECT count(ent_nome) FROM ENTIDADES WHERE ent_nome LIKE 'J%'
+
+        retornou 41.132 kakka
+
+Exercício, em quantas cidades diferentes os usuários estão cadastrados?
+
+        SELECT count(DISTINCT ent_cidade) FROM ENTIDADES
+
+        retornou 2.057... Banco de dados pequeno né?
+        
+Exercício, quantos produtos cadastrados tem 'SMART' no nome.
+
+        SELECT COUNT(pro_descricao)  FROM produtos WHERE  pro_descricao LIKE '%SMART%'
