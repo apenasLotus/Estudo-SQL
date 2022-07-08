@@ -325,67 +325,87 @@ Exercício obter os 10 produtos mais caros cadastrados no sistema.
         ORDER BY listprice DESC
 ```
 
-BETWEEN retorna os dados entre dois valores/expressões dentre um valor mínimo e um valor máximo.
+**BETWEEN** retorna os dados entre dois valores/expressões dentre um valor mínimo e um valor máximo.
 
 Ideia: É usado para retornar a intercessão entre dois pontos.
 Ex:
+
+```sql
 
         SELECT *
         FROM tabela
         WHERE coluna
         BETWEEN valorMínimo AND valorMáximo
+```
 
-NOT BETWEEN inverte a logica da função, fazendo a mesma retornar tudo fora da intercessão dentre os pontos passados.
+**NOT BETWEEN** inverte a logica da função, fazendo a mesma retornar tudo fora da intercessão dentre os pontos passados.
 
 ### Exemplos/Treino
 
 > Database Teste do Dantas.
+
+```sql
 
         SELECT DISTINCT pro_preco
         FROM produtos
         WHERE pro_preco BETWEEN 5000 AND 10000
         ORDER BY pro_preco ASC
+```
 
         retorna a intercessão dentre os valore de 5k e 10k
+
+```sql
 
         SELECT DISTINCT pro_preco
         FROM produtos
         WHERE pro_preco NOT BETWEEN 5000 AND 10000
         ORDER BY pro_preco ASC
+```
 
         retorna tudo oque está fora de 5k e 10k
 
-IN verifica se determinado valor/e ou valores correspondem a outros valores passados na lista.
+**IN** verifica se determinado valor/e ou valores correspondem a outros valores passados na lista.
 
 Ideia: busca no banco de dados e retorna qualquer valor que bater com os parâmeros de pesquisa passados.
 Ex:
+
+```sql
 
         valor IN (valor1, valor2...)
 
         Outro exemplo:
         valor IN (SELECT valor FROM nomeDaTabela)
+```
 
-        Um SELECT dentro de um IN recebe o nome de subSelect ou subQuery, fazendo o mesmo comparar os valores passados apenas com o retorno do SELECT.
+> Um **SELECT** dentro de um **IN** recebe o nome de subSelect ou subQuery, fazendo o mesmo comparar os valores passados apenas com o retorno do **SELECT**.
 
 ### Exemplos/Treino
 
 > Database Teste do Dantas.
 
+```sql
+
         SELECT sgp_cod, pro_descricao
         FROM  produtos
         WHERE  sgp_cod IN (603,602,604)
         ORDER BY sgp_cod ASC
+```
 
-        IMPORTANTE: A verificação da mesma condição acima pode ser feita usando operadores como 'OR', porem a velocidade de execução usando o 'IN' é maior, além de a quantidade de linhas de comando usadas serem menor.
+**IMPORTANTE**: A verificação da mesma condição acima pode ser feita usando operadores como 'OR', porem a velocidade de execução usando o 'IN' é maior, além de a quantidade de linhas de comando usadas serem menor.
 
         Comparativo:
 
+```sql
+
         SELECT sgp_cod, pro_descricao
         FROM  produtos
         WHERE  sgp_cod IN (603,602,604)
         ORDER BY sgp_cod ASC
+```
 
-        4 linhas.
+> 4 linhas.
+
+```sql
 
         SELECT sgp_cod, pro_descricao
         FROM  produtos
@@ -393,17 +413,21 @@ Ex:
         sgp_cod = 602 OR
         sgp_cod = 604
         ORDER BY sgp_cod ASC
+```
 
-        6 linhas.
+> 6 linhas.
 
-LIKE retorna todas as linhas que batem a expressão passada, seja ela uma string completa, ou meso uma condição.
+**LIKE** retorna todas as linhas que batem a expressão passada, seja ela uma string completa, ou meso uma condição.
 
 Ideia: retornar todas as linhas da coluna que batem com a/as condições passadas.
 Ex:
 
+```sql
+
         SELECT *
         FROM tabela
         WHERE coluna LIKE 'condição'
+```
 
         Condições:
 
@@ -422,34 +446,52 @@ Ex:
 
 > Database Teste do Dantas.
 
-        SELECT ent_nome 
+```sql
+
+        SELECT ent_nome
         FROM  entidades
         WHERE ent_nome LIKE 'GAB%'
         ORDER BY ent_nome ASC
+```
 
-        SELECT DISTINCT pro_preco,pro_descricao 
+```sql
+
+        SELECT DISTINCT pro_preco,pro_descricao
         FROM produtos
         WHERE pro_descricao  LIKE 'N%' AND pro_preco BETWEEN 1500 AND 5000
         ORDER BY pro_descricao ASC
+```
 
-        A partir de agora os comandos vão estar de pouco em pouco em linhas únicas.
+> A partir de agora os comandos vão estar de pouco em pouco em linhas únicas.
 
 Exercício, retornar a quantidade de produtos que custam mais de 1,5k no sistema.
 
+```sql
+
         SELECT COUNT(pro_preco) FROM produtos WHERE pro_preco > 1500
+```
 
 Exercício, retornar quantas pessoas começam com a letra 'J' na tabela.
 
+```sql
+
         SELECT count(ent_nome) FROM ENTIDADES WHERE ent_nome LIKE 'J%'
+```
 
         retornou 41.132 kakka
 
 Exercício, em quantas cidades diferentes os usuários estão cadastrados?
 
+```sql
+
         SELECT count(DISTINCT ent_cidade) FROM ENTIDADES
+```
 
         retornou 2.057... Banco de dados pequeno né?
-        
+
 Exercício, quantos produtos cadastrados tem 'SMART' no nome.
 
+```sql
+
         SELECT COUNT(pro_descricao)  FROM produtos WHERE  pro_descricao LIKE '%SMART%'
+```
