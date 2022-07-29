@@ -391,7 +391,7 @@ Ex:
         ORDER BY sgp_cod ASC
 ```
 
-**IMPORTANTE**: A verificação da mesma condição acima pode ser feita usando operadores como 'OR', porem a velocidade de execução usando o 'IN' é maior, além de a quantidade de linhas de comando usadas serem menor.
+**IMPORTANTE**: A verificação da mesma condição acima pode ser feita usando operadores como 'OR', porem a velocidade de execução usando o 'IN' é maior, além de a quantidade de código usado ser menor.
 
         Comparativo:
 
@@ -495,3 +495,182 @@ Exercício, quantos produtos cadastrados tem 'SMART' no nome.
 
         SELECT COUNT(pro_descricao)  FROM produtos WHERE  pro_descricao LIKE '%SMART%'
 ```
+
+**MIN, MAX, SUM, AVG** são funções que agregam ou combinam dados. Tem um sintaxe bastante didática. Por isso, vão ter poucos exemplos.
+
+Ideia: Agregar ou combinar dados de uma tabela em apenas 1 resultado.
+Ex:
+
+```sql
+
+        SELECT SUM(nomeDaColuna)
+        FROM tabela
+```
+
+Para somar um range especifico, é necessário adicionar uma condição.
+Ex:
+
+```sql
+
+        SELECT SUM(nomeDaColuna)
+        FROM tabela
+        WHERE idTabela < 10
+```
+
+Nesse caso, o **SUM** vai calcular os valores dentro do range de ID's menor que 10.<hr>
+
+**SUM** vai somar os valores de retorno, assim como **MIN** retorna o valor mínimo, **MAX** é auto explicativo, e **AVG** retorna a média dos valores.
+
+### Exemplos/Treino
+
+> Database Teste do Dantas.
+
+```sql
+
+        SELECT SUM(COM_VALOR_TOTAL)
+        FROM COMPRAS
+        WHERE COM_COT_COD < 10
+```
+
+> Retornou a soma, com um total de 22,991.41
+> Um pouco mais completo:
+
+```sql
+
+        SELECT SUM(COM_VALOR_TOTAL)
+        FROM COMPRAS
+        WHERE COM_COT_COD BETWEEN 5 AND 15
+```
+
+> Retornou a soma da intercessão de 5 e 15. Valor retornado: 88,330.73.
+
+A mesma lógica pode ser aplicada usando os outros comparadores como **MIN**, **MAX** e por aí vai.
+
+**GROUP BY** basicamente divide o resultado da sua pesquisa em grupos, podendo ser aplicada uma função em cada um dos mesmos. Por exemplo:
+
+- Grupo01: calcular a soma da intercessão de 15 até 25.
+  -Grupo02 contar o numero de itens do primeiro grupo.
+
+  Ideia: Dividir o resultado da query em grupos distintos, podendo assim executar funções tal como retornar os valores dos mesmo antes da aplicação das funções por exemplo.
+  Ex:
+
+```sql
+
+        SELECT coluna1, função(coluna2)
+        FROM nomeDaTabela
+        GROUP BY coluna1
+```
+
+### Exemplos/Treino
+
+> Database Teste do Dantas.
+
+```sql
+
+        SELECT COM_COT_COD ,SUM(COMP_COD)
+        FROM COMPRAS
+        GROUP BY COM_COT_COD
+```
+
+> Traduzindo oque tá acontecendo. 'COM_COT_COD' é o **ID** da compra. 'COMP_COD' é o **CÓDIGO** da compra.<p> Exemplificando com outras tabelas, é a mesma coisa que somar(**SUM**) todas as compras, agrupando(**ORDER BY**) pelo ID do comprador. <p>
+> Ou seja, soma todas as compras da pessoa com ID 1,2,3... E agrupa o retorno das mesmas pelo ID.
+
+Outro Ex:
+
+```sql
+
+        SELECT idProduto ,COUNT(idProduto)
+        FROM compras
+        GROUP BY idProduto
+```
+
+> Ele basicamente vai agrupar todos os produtos com ID's iguais, e contar quantas vezes os mesmos se repetem.
+
+> Basicamente vai retornar quantas vezes o 'firstName' aparece, pois o mesmo está sendo agrupado(**GROUP BY**). Ou seja, é juntado todos os nomes iguais, e depois os mesmo são contados.
+
+Outro Ex:
+
+```sql
+
+        SELECT color ,AVG(listPrice)
+        FROM product
+        GROUP BY color
+```
+
+> A query acima, agrupa o retorno pela cor(**GROUP BY**), e pega a media das mesmas pelo preço(**AVG**).<p>
+> Ou seja, retorna a média de preço por cor.
+
+Filtrando apenas por uma cor especifica:
+
+```sql
+
+        SELECT color ,AVG(listPrice)
+        FROM product
+        WHERE color = 'RED'
+        GROUP BY color
+```
+
+> Basta adicionar a condição dos mesmos.
+
+**HAVING** é usado em conjunto com um **GROUP BY** e funciona como um **WHERE**, mas apenas para os dados agrupados.
+Ideia: filtrar os dados retornados de um **GROUP BY**, de forma muito parecida com um **WHERE** mas apenas para os dados agrupados.
+
+```sql
+
+        SELECT coluna1, função(coluna2)
+        FROM nomeDaTabela
+        GROUP BY coluna1
+        HAVING condição
+```
+
+> A diferença dentre ambos, é que o **WHERE** aplica os filtros antes dos dados serem agrupados.
+
+Ex:
+
+```sql
+
+        SELECT firstName, COUNT(firstName)
+        FROM customers
+        GROUP BY firstName
+        HAVING COUNT(firstName) > 10
+```
+
+> Filtra a query retornando apenas os resultados com ocorrência maior que 10.
+
+### Exemplos/Treino
+
+> Database Teste do Dantas.
+
+Exercício 1, retornar os dados cadastrados mais de 1k de vezes no banco<p>
+Exercício 2, retornar os produtos que tem mais vendas da tabela.
+
+        Database passada pelo curso. Logo, nomes de colunas e tabelas diferentes.
+
+        Exercício 1:
+
+```sql
+
+
+        SELECT ENT_BAIRRO,COUNT(ENT_BAIRRO) o
+        FROM ENTIDADES
+        GROUP BY ENT_BAIRRO
+        ORDER BY o DESC
+```
+
+> Seleciona o nome dos bairros cadastrados na tabela de entidades, agrupam as mesmas e conta quantas vezes se repetem.<p> Após isso organiza os resultados utilizando o apelido passado ('**o**') em ordem decrescente.
+
+        Exercício 2:
+
+```sql
+
+        SELECT GRP_COD, SUM(PRO_PRECO) s
+        FROM PRODUTOS
+        GROUP BY GRP_COD
+        ORDER BY s DESC
+```
+
+> Retorna os dados por maior valor de soma total, ordenados pelo código dos produtos.
+
+        Retornou os ID's de 1, 708 e 920 como os mais vendidos.
+
+  
